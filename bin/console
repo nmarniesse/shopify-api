@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__.'/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+
+\Webmozart\Assert\Assert::fileExists(__DIR__.'/../.env', 'The .env file does not exist.');
+$dotenv = new \Symfony\Component\Dotenv\Dotenv();
+$dotenv->load(__DIR__.'/../.env');
+
+$application = new Application();
+$application->register(\Nmarniesse\ShopifyApi\Test::class);
+
+$application->run();
