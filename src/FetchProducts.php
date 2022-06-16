@@ -12,9 +12,9 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class Test extends Command
+final class FetchProducts extends Command
 {
-    protected static $defaultName = 'shopify:test';
+    protected static $defaultName = 'shopify:products:fetch';
 
     /**
      * {@inheritdoc}
@@ -34,16 +34,12 @@ final class Test extends Command
             \explode(',', $_ENV['SHOPIFY_APP_SCOPES'] ?? ''),
             $_ENV['SHOPIFY_APP_HOST_NAME'],
             new FileSessionStorage('/tmp/php_sessions'),
-            '2022-04',
+            $_ENV['API_VERSION'],
             false,
             false,
         );
 
-        $output->writeln('Request on [' . $_ENV['SHOPIFY_APP_HOST_NAME'] . '] with access token [' . $_ENV['ACCESS_TOKEN'] .']');
-
         $client = new Rest($_ENV['SHOPIFY_APP_HOST_NAME'], $_ENV['ACCESS_TOKEN']);
-
-        $output->writeln("Products:");
         $output->writeln($this->prettyfyResponse($client->get('products')));
 
         return Command::SUCCESS;
