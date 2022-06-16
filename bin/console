@@ -10,6 +10,6 @@ $dotenv = new \Symfony\Component\Dotenv\Dotenv();
 $dotenv->load(__DIR__.'/../.env');
 
 $application = new Application();
-$application->register(\Nmarniesse\ShopifyApi\Test::class);
+$application->add(new \Nmarniesse\ShopifyApi\Test());
 
 $application->run();

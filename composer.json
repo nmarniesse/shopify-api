@@ -13,6 +13,7 @@
         }
     ],
     "require": {
+        "php": ">=7.4",
         "shopify/shopify-api": "^2.0",
         "symfony/console": "^5.4",
         "symfony/dotenv": "^5.4",
