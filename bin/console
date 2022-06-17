@@ -11,5 +11,6 @@ $dotenv->load(__DIR__.'/../.env');
 
 $application = new Application();
 $application->add(new \Nmarniesse\ShopifyApi\FetchProducts());
+$application->add(new \Nmarniesse\ShopifyApi\FetchOrders());
 
 $application->run();
