@@ -12,9 +12,9 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class FetchOrders extends Command
+final class FetchEvents extends Command
 {
-    protected static $defaultName = 'shopify:orders:fetch';
+    protected static $defaultName = 'shopify:events:fetch';
 
     /**
      * {@inheritdoc}
@@ -40,9 +40,7 @@ final class FetchOrders extends Command
         );
 
         $client = new Rest($_ENV['SHOPIFY_APP_HOST_NAME'], $_ENV['ACCESS_TOKEN']);
-        $output->writeln($this->prettyfyResponse($client->get('orders', [], [
-            'created_at_min' => '2022-06-15T09:36:36+02:00'
-        ])));
+        $output->writeln($this->prettyfyResponse($client->get('events')));
 
         return Command::SUCCESS;
     }
